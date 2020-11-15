@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<div id="app" class="ui container">
+<div id="app" class="ui container" style="margin-top: 20px;">
   <h1>Votierung</h1>
   <br>
 
@@ -34,8 +34,11 @@
     </li>
   </form>
 
-  <br>
-  <pre>{{csv_output}}</pre>
+  <br><br>
+  <p>
+    CSV:<br>
+    <pre>{{csv_output}}</pre>
+  </p>
 </div>
 
 <script>
@@ -50,17 +53,13 @@ class Task {
     return this.binary;
   }
 }
+
 const vue = new Vue({
   data: {
-    name: 'Name',
-    number_of_tasks: "4",
-    sheet_number: "3",
+    name: localStorage.getItem('name') || 'Name',
+    number_of_tasks: 4,
+    sheet_number: 3,
     tasks: []
-  },
-  functions: {
-    refresh_data: function(event) {
-      console.log("Number" + this.number)
-    }
   },
   computed: {
     csv_output: function() {
@@ -73,10 +72,12 @@ const vue = new Vue({
     update_task_list: function() {
       const delta = this.number_of_tasks - this.tasks.length
       if (delta > 0) {
+        // If positiov, add the number of delta elements
         for (let i = 0; i < delta; i++) {
           this.tasks.push(new Task())
         }
       } else if (delta < 0) {
+        // If negative, remove the number of delta elements
         for (let i = 0; i < -delta; i++) {
           this.tasks.pop()
         }
@@ -86,6 +87,10 @@ const vue = new Vue({
   watch: {
     number_of_tasks: function() {
       this.update_task_list()
+    },
+    name: function() {
+      // Save name in localStorage for future visits of this site
+      localStorage.setItem('name', this.name)
     }
   },
   el: '#app'
