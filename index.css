@@ -1,0 +1,21 @@
+html, body, input {
+  color: white !important;
+  background-color: black !important;
+}
+
+.task {
+    list-style-type: none;
+    margin-bottom: 10px;
+}
+
+.task, .task label {
+  cursor: pointer;
+}
+
+.task input {
+    display: none;
+}
+
+.task input:checked + span {
+  color: green;
+}
