@@ -24,8 +24,8 @@ const vue = new Vue({
       return csv.join(';')
     },
     csv_filename: function() {
-      const name_underscore = this.name.replace(' ', '_')
-      return `Übungsblatt${this.sheet_number}_${name_underscore}.csv`
+      const name_wo_spaces = this.name.replace(' ', '')
+      return `Übungsblatt${this.sheet_number}_${name_wo_spaces}.csv`
     }
   },
   methods: {
