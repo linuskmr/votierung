@@ -16,7 +16,7 @@
   <h1>Votierung</h1>
   <br>
 
-  <form class="ui form inverted">
+  <form class="ui form">
     <div class="field inverted">
       <label>Dein Name</label>
       <input type="text" v-model="name">
@@ -29,15 +29,18 @@
       <label>Anzahl an Aufgaben</label>
       <input type="number" v-model="number_of_tasks">
     </div>
-    <button type="button" class="ui button inverted green field mini" @click="number_of_tasks++">+</button>
-    <button type="button" class="ui button inverted red field mini" @click="number_of_tasks--">-</button>
+    <button type="button" class="ui button field mini" @click="number_of_tasks++">+</button>
+    <button type="button" class="ui button field mini" @click="number_of_tasks--">-</button>
 
     <li class="task" v-for="(task, i) in tasks">
-      <span class="ui button inverted" :class="{'green': tasks[i].value}">
+      <span class="ui">
         <input type="checkbox" :id="'task_' + i" v-model="task.value">
-        <label class="ui inverted" :for="'task_' + i">Aufgabe {{i + 1}}</label>
+        <label class="ui basic button" :class="{'green': tasks[i].value}" :for="'task_' + i">Aufgabe {{i + 1}}</label>
       </span>
     </li>
+
+    <button type="button" class="ui button" @click="select_tasks(true)">Alle auswählen</button>
+    <button type="button" class="ui button" @click="select_tasks(false)">Nichts auswählen</button>
 
   </form>
 
@@ -47,8 +50,8 @@
     <pre id="csv_text">{{csv_output}}</pre>
   </p>
   <p>
-    <button class="ui button inverted" id="copy_csv_to_clipboard_button" @click="copy_csv_to_clipboard">In die Zwischenablage kopieren</button>
-    <a class="ui button inverted" :download="csv_filename" :href="'data:text/plain;charset=utf-8,' + encodeURIComponent(csv_output)">Download</a>
+    <button class="ui button" id="copy_csv_to_clipboard_button" @click="copy_csv_to_clipboard">In die Zwischenablage kopieren</button>
+    <a class="ui button" :download="csv_filename" :href="'data:text/plain;charset=utf-8,' + encodeURIComponent(csv_output)">Download</a>
   </p>
 </div>
 

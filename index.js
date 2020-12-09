@@ -1,20 +1,16 @@
 class Task {
   value = false
 
-  get binary() {
-    return this.value ? '1' : '0'
-  }
-
   toString() {
-    return this.binary;
+    return String(Number(this.value))
   }
 }
 
 const vue = new Vue({
   data: {
     name: localStorage.getItem('name') || 'Name',
-    number_of_tasks: 4,
-    sheet_number: 3,
+    number_of_tasks: 7,
+    sheet_number: 4,
     tasks: [],
     copy_clipboard: false
   },
@@ -32,7 +28,7 @@ const vue = new Vue({
     update_task_list: function() {
       const delta = this.number_of_tasks - this.tasks.length
       if (delta > 0) {
-        // If positiov, add the number of delta elements
+        // If positiv, add the number of delta elements
         for (let i = 0; i < delta; i++) {
           this.tasks.push(new Task())
         }
@@ -45,6 +41,8 @@ const vue = new Vue({
     }, copy_csv_to_clipboard: function() {
       navigator.clipboard.writeText(this.csv_output)
       document.getElementById("copy_csv_to_clipboard_button").innerText = "kopiert 🎉"
+    }, select_tasks: function(selectAll) {
+        this.tasks.forEach(t => t.value = selectAll);
     }
   },
   watch: {
