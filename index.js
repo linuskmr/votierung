@@ -10,7 +10,7 @@ const vue = new Vue({
   data: {
     name: localStorage.getItem('name') || 'Name',
     number_of_tasks: 7,
-    sheet_number: 4,
+    sheet_number: 5,
     tasks: [],
     copy_clipboard: false
   },
