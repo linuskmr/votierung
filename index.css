@@ -10,3 +10,7 @@
 .task input {
     display: none;
 }
+
+#app {
+    padding-bottom: 20px;
+}
