@@ -3,7 +3,7 @@
     margin-bottom: 10px;
 }
 
-.task, .task label {
+.task input, .task label {
   cursor: pointer;
 }
 
