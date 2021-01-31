@@ -9,8 +9,8 @@ class Task {
 const vue = new Vue({
   data: {
     name: localStorage.getItem('name') || 'Name',
-    number_of_tasks: 7,
-    sheet_number: 5,
+    number_of_tasks: 9,
+    sheet_number: 6,
     tasks: [],
     copy_clipboard: false
   },
